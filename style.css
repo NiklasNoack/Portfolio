@@ -1,0 +1,1117 @@
+
+/* =========================================
+   01 / GRUNDLAGEN
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
+
+:root {
+    --background: #080526;
+    --background-light: #100b3c;
+    --surface: #100d35;
+    --text: #f3efff;
+    --text-muted: #b7b0d0;
+    --text-dim: #817aab;
+    --pink: #ef8bd0;
+    --purple: #8526ff;
+    --blue: #3826ff;
+    --line: rgba(208, 193, 255, 0.18);
+}
+
+body {
+    position: relative;
+    isolation: isolate;
+    overflow-x: hidden;
+    background: var(--background);
+    color: var(--text);
+    font-family: "Courier New", monospace;
+    line-height: 1.7;
+    font-size: 14px;
+}
+
+/* Dekorative Farbflächen */
+
+body::before,
+body::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    pointer-events: none;
+    filter: blur(1px);
+}
+
+body::before {
+    width: 430px;
+    height: 380px;
+    top: -150px;
+    left: -180px;
+    border-radius: 45% 55% 60% 40%;
+    background: linear-gradient(
+        135deg,
+        #3212ff 5%,
+        #a000ff 45%,
+        #ff399d 100%
+    );
+    transform: rotate(-25deg);
+    opacity: 0.9;
+}
+
+body::after {
+    width: 360px;
+    height: 480px;
+    right: -220px;
+    bottom: 150px;
+    border-radius: 55% 45% 40% 60%;
+    background: linear-gradient(
+        145deg,
+        #ff399d,
+        #a000ff 55%,
+        #3212ff
+    );
+    transform: rotate(25deg);
+    opacity: 0.85;
+}
+
+
+/* =========================================
+   02 / HEADER UND NAVIGATION
+========================================= */
+
+header {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 8%;
+    border-bottom: 1px solid var(--line);
+    background: rgba(8, 5, 38, 0.55);
+    backdrop-filter: blur(12px);
+}
+
+.logo {
+    color: var(--text);
+    font-weight: bold;
+    text-decoration: none;
+    letter-spacing: 3px;
+    font-size: 15px;
+}
+
+.logo span {
+    color: var(--pink);
+}
+
+nav {
+    display: flex;
+    gap: 35px;
+}
+
+nav a {
+    position: relative;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 1px;
+    transition: color 0.25s ease;
+}
+
+nav a::after {
+    content: "";
+    position: absolute;
+    bottom: -7px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--pink);
+    transition: width 0.25s ease;
+}
+
+nav a:hover {
+    color: white;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+
+/* =========================================
+   03 / STARTSEITE – HERO
+========================================= */
+
+.hero {
+    min-height: 75vh;
+    padding: 120px 12% 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.hero-layout {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 0.85fr;
+    align-items: center;
+    gap: 70px;
+    padding: 100px 8%;
+    min-height: 85vh;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    min-width: 0;
+}
+
+/* Feine Konturlinien im Hero */
+
+.hero-layout::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: -35px;
+    right: 5%;
+    width: 430px;
+    height: 320px;
+    pointer-events: none;
+    opacity: 0.4;
+    background: repeating-radial-gradient(
+        ellipse at 50% 50%,
+        transparent 0,
+        transparent 13px,
+        rgba(255, 220, 255, 0.65) 14px,
+        transparent 15px,
+        transparent 20px
+    );
+    transform: rotate(-15deg);
+    mask-image: linear-gradient(
+        135deg,
+        transparent 0%,
+        black 35%,
+        black 75%,
+        transparent 100%
+    );
+}
+
+.eyebrow,
+.category {
+    color: var(--pink);
+    font-size: 10px;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.hero h1 {
+    font-family: "Courier New", monospace;
+    font-size: clamp(65px, 10vw, 135px);
+    line-height: 0.92;
+    letter-spacing: -7px;
+    font-weight: 400;
+    margin-bottom: 35px;
+}
+
+.hero h1 span {
+    color: #d8b3ff;
+}
+
+.intro {
+    color: var(--text-muted);
+    max-width: 420px;
+    margin-bottom: 35px;
+    line-height: 1.9;
+    font-size: 13px;
+}
+
+.scroll-link {
+    display: inline-block;
+    color: var(--text);
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-decoration: none;
+    border-bottom: 1px solid var(--pink);
+    padding-bottom: 8px;
+    transition: color 0.25s ease;
+}
+
+.scroll-link:hover {
+    color: var(--pink);
+}
+
+/* Typo-Projekt */
+
+.hero-featured {
+    position: relative;
+    z-index: 1;
+    min-width: 0;
+    max-width: 520px;
+    width: 100%;
+    padding: 30px;
+    border: 1px solid rgba(221, 197, 255, 0.2);
+    background: rgba(16, 11, 60, 0.65);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 20px 70px rgba(0, 0, 0, 0.18);
+}
+
+.hero-featured .category {
+    margin-bottom: 12px;
+}
+
+.hero-featured h2 {
+    font-size: clamp(30px, 4vw, 46px);
+    font-weight: 400;
+    color: var(--text);
+    margin: 10px 0 15px;
+}
+
+.hero-featured p:not(.category) {
+    color: var(--text-muted);
+    max-width: 450px;
+    line-height: 1.8;
+    margin-bottom: 25px;
+    font-size: 12px;
+}
+
+.hero-featured video {
+    display: block;
+    width: 100%;
+    max-width: 480px;
+    height: auto;
+    background: #05031d;
+    border: 1px solid var(--line);
+}
+
+
+/* =========================================
+   04 / PROJEKTBEREICHE
+========================================= */
+
+.project-section {
+    position: relative;
+    padding: 100px 12%;
+    border-top: 1px solid var(--line);
+}
+
+.section-heading {
+    display: flex;
+    align-items: baseline;
+    gap: 30px;
+    margin-bottom: 55px;
+}
+
+.section-heading span {
+    color: var(--pink);
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+.section-heading h2 {
+    font-size: clamp(24px, 4vw, 38px);
+    font-weight: 400;
+    letter-spacing: -1px;
+    color: var(--text);
+}
+
+/* Projektkarten */
+
+.project {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    padding: 40px 25px;
+    border-top: 1px solid var(--line);
+    color: inherit;
+    text-decoration: none;
+    transition:
+        background 0.3s ease,
+        padding 0.3s ease;
+}
+
+.project:last-child {
+    border-bottom: 1px solid var(--line);
+}
+
+.project:hover {
+    background: rgba(129, 48, 255, 0.09);
+    padding-left: 35px;
+    padding-right: 35px;
+}
+
+.project .category {
+    margin-bottom: 12px;
+    font-size: 9px;
+}
+
+.project h3 {
+    font-size: 22px;
+    font-weight: 400;
+    margin-bottom: 12px;
+    color: var(--text);
+}
+
+.project p:not(.category) {
+    color: var(--text-muted);
+    max-width: 450px;
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+.project-link {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    color: var(--pink);
+    font-size: 10px;
+    letter-spacing: 2px;
+    transition: color 0.25s ease;
+}
+
+.project:hover .project-link {
+    color: white;
+}
+
+
+/* =========================================
+   05 / KONTAKT UND FOOTER
+========================================= */
+
+.contact {
+    position: relative;
+    padding: 140px 12%;
+    border-top: 1px solid var(--line);
+    overflow: hidden;
+}
+
+.contact::after {
+    content: "";
+    position: absolute;
+    right: -100px;
+    bottom: -200px;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle,
+        rgba(133, 38, 255, 0.35),
+        rgba(239, 139, 208, 0.08) 55%,
+        transparent 70%
+    );
+    pointer-events: none;
+}
+
+.contact h2 {
+    position: relative;
+    z-index: 1;
+    font-size: clamp(35px, 6vw, 65px);
+    line-height: 1.15;
+    font-weight: 400;
+    letter-spacing: -2px;
+    margin-bottom: 30px;
+}
+
+.contact-email {
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    color: var(--pink);
+    text-decoration: none;
+    font-size: 12px;
+    border-bottom: 1px solid var(--pink);
+    padding-bottom: 7px;
+    transition: color 0.25s ease;
+}
+
+.contact-email:hover {
+    color: white;
+}
+
+.contact p:not(.eyebrow) {
+    color: var(--text-muted);
+}
+
+footer {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    padding: 25px 8%;
+    border-top: 1px solid var(--line);
+    color: var(--text-muted);
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+
+/* =========================================
+   06 / ALLGEMEINE PROJEKT-UNTERSEITEN
+========================================= */
+
+.project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 8%;
+    border-bottom: 1px solid var(--line);
+    background: rgba(8, 5, 38, 0.55);
+    backdrop-filter: blur(12px);
+}
+
+.project-header-label,
+.project-category {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--pink);
+}
+
+.project-hero {
+    padding: 110px 12% 80px;
+}
+
+.project-hero h1 {
+    font-size: clamp(55px, 9vw, 110px);
+    line-height: 0.95;
+    letter-spacing: -5px;
+    font-weight: 400;
+    margin-bottom: 30px;
+}
+
+.project-hero h1 span {
+    color: #d8b3ff;
+}
+
+.project-detail {
+    padding: 50px 12% 100px;
+    border-top: 1px solid var(--line);
+}
+
+.project-detail > h2,
+.detail-text h2 {
+    font-size: 25px;
+    font-weight: 400;
+    margin-bottom: 25px;
+}
+
+.detail-text {
+    padding: 45px 0;
+    border-bottom: 1px solid var(--line);
+}
+
+.detail-text p {
+    color: var(--text-muted);
+    max-width: 650px;
+    line-height: 1.9;
+    font-size: 13px;
+}
+
+.back-link {
+    display: inline-block;
+    margin-top: 50px;
+    color: var(--pink);
+    text-decoration: none;
+    font-size: 10px;
+    letter-spacing: 2px;
+    transition: color 0.25s ease;
+}
+
+.back-link:hover {
+    color: white;
+}
+
+
+/* =========================================
+   07 / LIFTED UND WEITERE PROJEKTSEITEN
+========================================= */
+
+.lifted-page {
+    position: relative;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+.lifted-intro {
+    padding: 110px 0 80px;
+    max-width: 750px;
+}
+
+.lifted-intro h1 {
+    font-size: clamp(55px, 9vw, 100px);
+    line-height: 1.05;
+    margin: 20px 0 10px;
+    font-weight: 400;
+    letter-spacing: -4px;
+}
+
+.lifted-intro h1 span {
+    color: #d8b3ff;
+}
+
+.lifted-subtitle {
+    font-size: 17px;
+    color: var(--pink);
+    margin-bottom: 35px;
+}
+
+.lifted-description {
+    max-width: 620px;
+    line-height: 1.9;
+    color: var(--text-muted);
+    font-size: 13px;
+}
+
+.section-heading > p {
+    color: var(--text-muted);
+    line-height: 1.8;
+    max-width: 600px;
+    font-size: 12px;
+}
+
+.lifted-video-section {
+    margin-bottom: 120px;
+}
+
+.lifted-video {
+    display: block;
+    width: 100%;
+    background: #05031d;
+    border: 1px solid var(--line);
+}
+
+.media-caption {
+    color: var(--text-dim);
+    font-size: 11px;
+    margin-top: 12px;
+}
+
+.lifted-work-section {
+    margin-bottom: 120px;
+}
+
+.lifted-work-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 70px;
+}
+
+.lifted-work-text {
+    color: var(--text-muted);
+    line-height: 1.9;
+    font-size: 13px;
+}
+
+.lifted-work-text p {
+    margin-bottom: 25px;
+}
+
+.lifted-work-list h3 {
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--pink);
+    margin-bottom: 20px;
+}
+
+.lifted-work-list ul {
+    padding-left: 20px;
+    color: var(--text-muted);
+    line-height: 2.2;
+    font-size: 12px;
+}
+
+.lifted-work-list li::marker {
+    color: var(--pink);
+}
+
+.lifted-screenshots-section {
+    margin-bottom: 120px;
+}
+
+.lifted-screenshot {
+    margin-bottom: 75px;
+}
+
+.lifted-screenshot img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--line);
+    background: var(--background-light);
+}
+
+.screenshot-caption {
+    margin-top: 20px;
+    max-width: 650px;
+}
+
+.screenshot-caption h3 {
+    font-size: 17px;
+    font-weight: 400;
+    color: var(--pink);
+    margin-bottom: 10px;
+}
+
+.screenshot-caption p {
+    color: var(--text-muted);
+    line-height: 1.8;
+    font-size: 12px;
+}
+
+.lifted-software-section {
+    padding: 50px 0 90px;
+    border-top: 1px solid var(--line);
+}
+
+.software-name {
+    font-size: 24px;
+    letter-spacing: 3px;
+    font-weight: 400;
+}
+
+.lifted-footer {
+    padding: 30px 0 70px;
+    border-top: 1px solid var(--line);
+}
+
+
+/* =========================================
+   08 / DIALOGBEARBEITUNG
+========================================= */
+
+.dialog-audio-player {
+    padding: 30px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+}
+
+.dialog-audio-player audio {
+    width: 100%;
+}
+
+.dialog-tools {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 35px;
+}
+
+.dialog-tool h3 {
+    font-size: 17px;
+    font-weight: 400;
+    color: var(--pink);
+    margin-bottom: 15px;
+}
+
+.dialog-tool p {
+    color: var(--text-muted);
+    line-height: 1.8;
+    font-size: 12px;
+}
+
+
+/* =========================================
+   09 / MUSIK UND AUDIOPRODUKTION
+========================================= */
+
+.music-project-section {
+    margin-bottom: 120px;
+}
+
+.music-description {
+    color: var(--text-muted);
+    line-height: 1.9;
+    max-width: 700px;
+    margin-bottom: 30px;
+    font-size: 13px;
+}
+
+.music-audio-player {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    padding: 30px;
+}
+
+.music-audio-player audio,
+.mixing-version audio {
+    width: 100%;
+}
+
+.mixing-comparison {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-top: 35px;
+}
+
+.mixing-version {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    padding: 25px;
+}
+
+.mixing-label {
+    margin-bottom: 25px;
+}
+
+.mixing-label span {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--pink);
+}
+
+.mixing-label h3 {
+    font-size: 19px;
+    font-weight: 400;
+    margin-top: 10px;
+}
+
+.mixing-screenshot {
+    margin-top: 65px;
+}
+
+.mixing-screenshot img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--line);
+    background: var(--background-light);
+}
+
+
+/* =========================================
+   10 / AUDIO- UND VIDEOPLAYER
+========================================= */
+
+audio {
+    accent-color: var(--pink);
+}
+
+video {
+    max-width: 100%;
+}
+
+video:focus-visible,
+audio:focus-visible {
+    outline: 2px solid var(--pink);
+    outline-offset: 4px;
+}
+
+
+/* =========================================
+   11 / RESPONSIVE DESIGN
+========================================= */
+
+@media (max-width: 900px) {
+
+    .hero-layout {
+        gap: 40px;
+        padding-left: 8%;
+        padding-right: 8%;
+    }
+
+    .hero h1 {
+        font-size: clamp(60px, 10vw, 100px);
+    }
+
+    .project-section {
+        padding-left: 8%;
+        padding-right: 8%;
+    }
+
+    .contact {
+        padding-left: 8%;
+        padding-right: 8%;
+    }
+}
+
+@media (max-width: 800px) {
+
+    .hero-layout {
+        grid-template-columns: 1fr;
+        gap: 60px;
+        padding: 90px 8%;
+    }
+
+    .hero-featured {
+        max-width: 600px;
+    }
+
+    .hero-featured video {
+        max-width: 100%;
+    }
+
+    .hero-layout::after {
+        right: -100px;
+        opacity: 0.2;
+    }
+
+    .lifted-work-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+
+    .dialog-tools {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+}
+
+@media (max-width: 700px) {
+
+    header {
+        flex-direction: column;
+        gap: 20px;
+        padding: 25px 6%;
+    }
+
+    nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px 22px;
+    }
+
+    .hero {
+        padding: 90px 8%;
+    }
+
+    .hero h1 {
+        font-size: clamp(60px, 15vw, 95px);
+        letter-spacing: -4px;
+    }
+
+    .hero-featured {
+        padding: 22px;
+    }
+
+    .project-section {
+        padding: 70px 8%;
+    }
+
+    .project {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 30px 10px;
+    }
+
+    .project:hover {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .project-link {
+        justify-content: flex-start;
+        margin-top: 5px;
+    }
+
+    .section-heading {
+        gap: 15px;
+        margin-bottom: 35px;
+    }
+
+    .section-heading h2 {
+        font-size: 25px;
+    }
+
+    .contact {
+        padding: 90px 8%;
+    }
+
+    .contact h2 {
+        font-size: clamp(34px, 9vw, 55px);
+    }
+
+    footer {
+        padding: 22px 8%;
+    }
+
+    .project-header {
+        padding: 25px 20px;
+    }
+
+    .project-header-label {
+        display: none;
+    }
+
+    .lifted-page {
+        padding: 0 20px;
+    }
+
+    .lifted-intro {
+        padding: 75px 0 55px;
+    }
+
+    .lifted-intro h1 {
+        font-size: clamp(48px, 12vw, 75px);
+        letter-spacing: -3px;
+    }
+
+    .lifted-video-section,
+    .lifted-work-section,
+    .lifted-screenshots-section,
+    .music-project-section {
+        margin-bottom: 85px;
+    }
+
+    .lifted-software-section {
+        padding: 40px 0 65px;
+    }
+
+    .dialog-audio-player,
+    .music-audio-player,
+    .mixing-version {
+        padding: 20px;
+    }
+
+    .mixing-comparison {
+        grid-template-columns: 1fr;
+    }
+
+    .mixing-screenshot {
+        margin-top: 45px;
+    }
+
+    .project-hero {
+        padding: 80px 8%;
+    }
+
+    .project-detail {
+        padding: 40px 8% 80px;
+    }
+
+    .project-hero h1 {
+        letter-spacing: -3px;
+    }
+}
+
+
+/* =========================================
+   12 / BEWEGUNGSREDUZIERUNG
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+    }
+}
+
+
+/* =========================================
+   BESSERE LESBARKEIT / SCHRIFTGRÖSSEN
+========================================= */
+
+/* Allgemeine Einleitung */
+.intro {
+    font-size: 19px;
+    line-height: 1.9;
+}
+
+/* Projektbeschreibungen */
+.hero-featured p:not(.category),
+.project p:not(.category) {
+    font-size: 17px;
+    line-height: 1.9;
+}
+
+/* Projekttexte */
+.detail-text p,
+.lifted-description,
+.lifted-work-text,
+.screenshot-caption p,
+.music-description,
+.dialog-tool p,
+.section-heading > p {
+    font-size: 16px;
+    line-height: 1.9;
+}
+
+/* Listen */
+.lifted-work-list ul {
+    font-size: 15px;
+    line-height: 2;
+}
+
+/* =========================================
+   KLEINE ÜBERSCHRIFTEN UND LABELS
+========================================= */
+
+/* MEDIENKONZEPTION / AUDIO und ähnliche Rubriken */
+.eyebrow,
+.category,
+.project-category,
+.project-header-label {
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+
+/* 02 / DER ARBEITSPROZESS und ähnliche Abschnittsnummern */
+.section-heading span {
+    font-size: 15px;
+}
+
+/* Umgesetzte Arbeitsschritte und vergleichbare Unterüberschriften */
+.lifted-work-list h3,
+.screenshot-caption h3,
+.dialog-tool h3 {
+    font-size: 19px;
+}
+
+/* PROJEKTE ENTDECKEN und ähnliche Links */
+.scroll-link,
+.back-link,
+.project-link {
+    font-size: 14px;
+}
+
+/* Bildunterschriften */
+.media-caption {
+    font-size: 14px;
+}
+
+/* Navigation */
+nav a {
+    font-size: 14px;
+}
+
+/* Allgemeine Schriftgröße */
+body {
+    font-size: 16px;
+}
+
+/* Footer */
+footer {
+    font-size: 12px;
+}
+
+/* =========================================
+   KLEINE BESCHRIFTUNGEN AUF PROJEKTSEITEN
+========================================= */
+
+.mixing-label span {
+    font-size: 13px;
+}
+
+.software-name {
+    font-size: 26px;
+}
+
+/* Pinke Kategorien über den Projekttiteln */
+.project .category {
+    font-size: 15px;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+}
